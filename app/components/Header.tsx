@@ -60,7 +60,7 @@ export default function Header() {
             </Link>
             <div className="md:hidden ml-2">
               <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+                {isMenuOpen ? <X className="h-6 w-6 text-white" /> : <Menu className="h-6 w-6 text-white" />}
               </button>
             </div>
           </div>
@@ -68,40 +68,40 @@ export default function Header() {
       </div>
       {isMenuOpen && (
         <div className="md:hidden">
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 glass-effect-dark rounded-b-lg">
             <Link
               href="#mission"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              className="block px-3 py-2 text-base font-medium text-white hover:text-blue-300 hover:bg-blue-900/30 rounded-md transition-colors duration-300"
             >
               ミッション
             </Link>
             <Link
               href="#services"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              className="block px-3 py-2 text-base font-medium text-white hover:text-blue-300 hover:bg-blue-900/30 rounded-md transition-colors duration-300"
             >
               サービス
             </Link>
             <Link
               href="#products"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              className="block px-3 py-2 text-base font-medium text-white hover:text-blue-300 hover:bg-blue-900/30 rounded-md transition-colors duration-300"
             >
               製品
             </Link>
             <Link
               href="#vision"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              className="block px-3 py-2 text-base font-medium text-white hover:text-blue-300 hover:bg-blue-900/30 rounded-md transition-colors duration-300"
             >
               ビジョン
             </Link>
             <Link
               href="#company"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              className="block px-3 py-2 text-base font-medium text-white hover:text-blue-300 hover:bg-blue-900/30 rounded-md transition-colors duration-300"
             >
               会社情報
             </Link>
             <Link
               href="#contact"
-              className="block px-3 py-2 text-base font-medium text-gray-700 hover:text-gray-900 hover:bg-gray-50"
+              className="block px-3 py-2 text-base font-medium text-white hover:text-blue-300 hover:bg-blue-900/30 rounded-md transition-colors duration-300"
             >
               お問い合わせ
             </Link>
