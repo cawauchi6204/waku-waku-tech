@@ -1,9 +1,9 @@
 import Header from "./components/Header"
 import Hero from "./components/Hero"
 import Services from "./components/Services"
-import TechStack from "./components/TechStack"
-import CaseStudies from "./components/CaseStudies"
-import Team from "./components/Team"
+import Products from "./components/TechStack"
+import Vision from "./components/CaseStudies"
+import Company from "./components/Team"
 import ContactForm from "./components/ContactForm"
 import Footer from "./components/Footer"
 
@@ -14,9 +14,9 @@ export default function Home() {
       <main>
         <Hero />
         <Services />
-        <TechStack />
-        <CaseStudies />
-        <Team />
+        <Products />
+        <Vision />
+        <Company />
         <ContactForm />
       </main>
       <Footer />

@@ -18,22 +18,14 @@ export default function ContactForm() {
   }
 
   return (
-    <div className="bg-white" id="contact">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-        <div className="lg:text-center">
-          <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">お問い合わせ</h2>
-          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-            お気軽にご連絡ください
-          </p>
-          <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-            AI技術についてのご質問や、プロジェクトのご相談など、お気軽にお問い合わせください。
-          </p>
-        </div>
-
-        <div className="mt-10 max-w-lg mx-auto">
+    <div className="contact-gradient text-white py-16" id="contact">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 className="text-4xl font-bold mb-8">Contact Us</h2>
+        
+        <div className="max-w-lg mx-auto bg-white bg-opacity-10 p-8 rounded-lg backdrop-blur-sm">
           <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-6">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="name" className="block text-sm font-medium text-white">
                 お名前
               </label>
               <input
@@ -42,12 +34,12 @@ export default function ContactForm() {
                 id="name"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="mt-1 block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                className="mt-1 block w-full bg-white bg-opacity-20 border-0 border-b border-white border-opacity-30 focus:border-white focus:ring-0 text-white placeholder-white placeholder-opacity-50"
                 required
               />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="email" className="block text-sm font-medium text-white">
                 メールアドレス
               </label>
               <input
@@ -56,12 +48,12 @@ export default function ContactForm() {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                className="mt-1 block w-full bg-white bg-opacity-20 border-0 border-b border-white border-opacity-30 focus:border-white focus:ring-0 text-white placeholder-white placeholder-opacity-50"
                 required
               />
             </div>
             <div>
-              <label htmlFor="message" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="message" className="block text-sm font-medium text-white">
                 メッセージ
               </label>
               <textarea
@@ -70,16 +62,16 @@ export default function ContactForm() {
                 rows={4}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                className="mt-1 block w-full shadow-sm sm:text-sm focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                className="mt-1 block w-full bg-white bg-opacity-20 border-0 border-b border-white border-opacity-30 focus:border-white focus:ring-0 text-white placeholder-white placeholder-opacity-50"
                 required
               ></textarea>
             </div>
             <div>
               <button
                 type="submit"
-                className="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="w-full inline-flex justify-center py-3 px-6 border border-transparent shadow-sm text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
               >
-                送信
+                送信する
               </button>
             </div>
           </form>

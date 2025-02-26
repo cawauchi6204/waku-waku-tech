@@ -1,37 +1,59 @@
-const technologies = [
-  { name: "Next.js", description: "Reactフレームワーク" },
-  { name: "TypeScript", description: "静的型付け言語" },
-  { name: "Tailwind CSS", description: "CSSフレームワーク" },
-  { name: "React", description: "UIライブラリ" },
-  { name: "Go", description: "サーバーサイドプログラミング言語" },
-  { name: "Dify", description: "AIワークフロー" },
+import Link from "next/link"
+
+const products = [
+  {
+    name: "SmartSales AI",
+    description: "AIを活用した営業支援ツール。顧客データを分析し、最適な営業戦略を提案します。",
+    bgColor: "bg-pink-100",
+    textColor: "text-pink-600",
+    buttonColor: "bg-pink-500 hover:bg-pink-600",
+  },
+  {
+    name: "AI-SEO",
+    description: "AIによるSEO最適化ツール。検索エンジンのアルゴリズムを分析し、効果的なSEO戦略を提案します。",
+    bgColor: "bg-blue-100",
+    textColor: "text-blue-600",
+    buttonColor: "bg-blue-500 hover:bg-blue-600",
+  },
+  {
+    name: "AIコンシェル",
+    description: "24時間対応のAIチャットボット。住民からの問い合わせに自動で回答し、行政サービスの効率化を実現します。",
+    bgColor: "bg-purple-100",
+    textColor: "text-purple-600",
+    buttonColor: "bg-purple-500 hover:bg-purple-600",
+  },
 ]
 
-export default function TechStack() {
+export default function Products() {
   return (
-    <div className="bg-gray-50" id="tech-stack">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
-        <div className="lg:text-center">
-          <h2 className="text-base text-indigo-600 font-semibold tracking-wide uppercase">技術スタック</h2>
-          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 sm:text-4xl">
-            最先端のAI技術を活用
-          </p>
-          <p className="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
-            私たちは常に最新の技術を取り入れ、効率的で革新的なソリューションを提供します。
-          </p>
+    <div className="bg-white" id="products">
+      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
+        <div className="lg:text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900">製品紹介</h2>
         </div>
 
-        <div className="mt-10">
-          <dl className="space-y-10 md:space-y-0 md:grid md:grid-cols-3 md:gap-x-8 md:gap-y-10">
-            {technologies.map((tech) => (
-              <div key={tech.name} className="relative">
-                <dt>
-                  <p className="text-lg leading-6 font-medium text-gray-900">{tech.name}</p>
-                </dt>
-                <dd className="mt-2 text-base text-gray-500">{tech.description}</dd>
+        <div className="mt-10 space-y-12">
+          {products.map((product, index) => (
+            <div key={product.name} className={`${product.bgColor} rounded-lg overflow-hidden`}>
+              <div className="px-6 py-8 sm:p-10 sm:pb-6">
+                <div className="flex items-center justify-between">
+                  <h3 className={`text-xl font-semibold ${product.textColor}`}>{product.name}</h3>
+                  <span className="px-3 py-1 text-sm font-medium rounded-full bg-white">New</span>
+                </div>
+                <div className="mt-4 text-gray-700">
+                  <p>{product.description}</p>
+                </div>
+                <div className="mt-6">
+                  <Link
+                    href="#contact"
+                    className={`inline-flex items-center px-4 py-2 text-sm font-medium rounded-md text-white ${product.buttonColor}`}
+                  >
+                    詳細を見る
+                  </Link>
+                </div>
               </div>
-            ))}
-          </dl>
+            </div>
+          ))}
         </div>
       </div>
     </div>
