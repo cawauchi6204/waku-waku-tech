@@ -3,6 +3,30 @@
 import { useState, useEffect } from "react";
 import { Zap, Database, Building } from "lucide-react";
 
+const services = [
+  {
+    name: "業務効率化AI導入支援",
+    description: "煩雑な業務プロセスをAIで自動化し、コスト削減と生産性向上を同時に実現します。",
+    gradient: "from-blue-500 to-cyan-500",
+    icon: <Zap className="w-6 h-6 text-blue-300" />,
+    delay: "delay-100",
+  },
+  {
+    name: "MVP実装",
+    description: "最短距離でサービスを開発します。",
+    gradient: "from-purple-500 to-pink-500",
+    icon: <Database className="w-6 h-6 text-purple-300" />,
+    delay: "delay-300",
+  },
+  {
+    name: "自社サービス開発",
+    description: "AIを使用してこれまでになかったサービスを開発します。",
+    gradient: "from-pink-500 to-red-500",
+    icon: <Building className="w-6 h-6 text-pink-300" />,
+    delay: "delay-500",
+  },
+];
+
 export default function Services() {
   const [isVisible, setIsVisible] = useState(false);
 
@@ -27,11 +51,11 @@ export default function Services() {
 
   return (
     <div
-      className="cyber-gradient text-white relative overflow-hidden"
+      className="bg-gray-900 grid-pattern relative overflow-hidden"
       id="services"
     >
-      {/* グリッドパターンオーバーレイ */}
-      <div className="absolute inset-0 grid-pattern opacity-20"></div>
+      {/* サイバーパンクなグラデーションオーバーレイ */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 to-purple-900/20"></div>
 
       <div className="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 relative z-10">
         <div
@@ -42,71 +66,46 @@ export default function Services() {
           }`}
         >
           <div className="inline-block px-4 py-1 rounded-full glass-effect mb-4 neon-box">
-            <span className="text-sm font-medium"># Services</span>
+            <span className="text-sm font-medium text-white"># Services</span>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 neon-text-pink">
+          <h2 className="text-3xl md:text-4xl font-bold text-white neon-text mb-6">
             最先端AIで企業の未来を切り拓く
           </h2>
-          <p className="text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
             我々のAI技術で、あなたのビジネスを次のレベルへ。革新的なソリューションで競争力を高めます。
           </p>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
-          <div
-            className={`glass-effect-dark p-8 rounded-2xl border border-blue-400/20 hover-scale transition-all duration-700 delay-100 ${
-              isVisible
-                ? "opacity-100 transform-none"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            <div className="w-14 h-14 rounded-full flex items-center justify-center bg-blue-500/20 mb-6 neon-box">
-              <Zap className="w-7 h-7 text-blue-400" />
+        <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-3">
+          {services.map((service, index) => (
+            <div
+              key={service.name}
+              className={`glass-effect-dark border border-white/10 rounded-2xl overflow-hidden hover-scale transition-all duration-700 ${
+                service.delay
+              } ${
+                isVisible
+                  ? "opacity-100 transform-none"
+                  : "opacity-0 translate-y-10"
+              }`}
+            >
+              <div className={`h-2 bg-gradient-to-r ${service.gradient}`}></div>
+              <div className="p-8">
+                <div className="flex items-center space-x-3 mb-6">
+                  <div
+                    className={`w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-r ${service.gradient}`}
+                  >
+                    {service.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">
+                    {service.name}
+                  </h3>
+                </div>
+                <div className="mt-4 text-gray-300">
+                  <p>{service.description}</p>
+                </div>
+              </div>
             </div>
-            <h3 className="text-2xl font-semibold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-              業務効率化AI導入支援
-            </h3>
-            <p className="text-white text-opacity-90 leading-relaxed">
-              煩雑な業務プロセスをAIで自動化し、
-              コスト削減と生産性向上を同時に実現します。
-            </p>
-          </div>
-
-          <div
-            className={`glass-effect-dark p-8 rounded-2xl border border-purple-400/20 hover-scale transition-all duration-700 delay-300 ${
-              isVisible
-                ? "opacity-100 transform-none"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            <div className="w-14 h-14 rounded-full flex items-center justify-center bg-purple-500/20 mb-6 neon-box">
-              <Database className="w-7 h-7 text-purple-400" />
-            </div>
-            <h3 className="text-2xl font-semibold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300">
-              MVP実装
-            </h3>
-            <p className="text-white text-opacity-90 leading-relaxed">
-              最短距離でサービスを開発します。
-            </p>
-          </div>
-
-          <div
-            className={`glass-effect-dark p-8 rounded-2xl border border-pink-400/20 hover-scale transition-all duration-700 delay-500 ${
-              isVisible
-                ? "opacity-100 transform-none"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            <div className="w-14 h-14 rounded-full flex items-center justify-center bg-pink-500/20 mb-6 neon-box">
-              <Building className="w-7 h-7 text-pink-400" />
-            </div>
-            <h3 className="text-2xl font-semibold mb-4 text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-red-300">
-              自社サービス開発
-            </h3>
-            <p className="text-white text-opacity-90 leading-relaxed">
-              AIを使用してこれまでになかったサービスを開発します。
-            </p>
-          </div>
+          ))}
         </div>
       </div>
     </div>
