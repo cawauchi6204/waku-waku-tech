@@ -185,6 +185,50 @@ const Cube3D = () => {
   );
 };
 
+// テクノロジーカードコンポーネント
+const TechCard = ({
+  icon,
+  title,
+  description,
+}: {
+  icon: React.ReactNode;
+  title: string;
+  description: string;
+}) => {
+  return (
+    <div className="bg-gray-800/50 backdrop-blur-sm rounded-xl p-6 border border-blue-500/20 hover:border-blue-400/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 group">
+      <div className="mb-4 text-blue-400 group-hover:text-blue-300 transition-colors duration-300">
+        {icon}
+      </div>
+      <h3 className="text-xl font-bold text-white mb-2 group-hover:text-blue-300 transition-colors duration-300">
+        {title}
+      </h3>
+      <p className="text-blue-100/80">{description}</p>
+    </div>
+  );
+};
+
+// 数字カウンターコンポーネント
+const StatCounter = ({
+  value,
+  label,
+  suffix = "",
+}: {
+  value: number;
+  label: string;
+  suffix?: string;
+}) => {
+  return (
+    <div className="text-center">
+      <div className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-pink-500 mb-2">
+        {value}
+        {suffix}
+      </div>
+      <div className="text-blue-200 text-sm">{label}</div>
+    </div>
+  );
+};
+
 export default function Hero() {
   const [isVisible, setIsVisible] = useState(false);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -217,7 +261,7 @@ export default function Hero() {
 
   return (
     <div
-      className="relative overflow-hidden min-h-screen pt-24 bg-gray-900"
+      className="relative overflow-hidden bg-gray-900"
       id="mission"
       ref={heroRef}
     >
@@ -248,8 +292,8 @@ export default function Hero() {
         }}
       ></div>
 
-      {/* メインコンテンツ */}
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20">
+      {/* ヒーローセクション上部 */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         <div className="flex flex-col md:flex-row items-center justify-between">
           {/* テキストコンテンツ */}
           <div
@@ -264,9 +308,9 @@ export default function Hero() {
 
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
               <span className="block text-white neon-text mb-2">
-                AI・テクノロジーの力で
-                <br />
-                ワクワクする未来を創造する
+                <p>AI・テクノロジーの力で</p>
+                <p className="mt-2">ワクワクする未来を</p>
+                <p className="mt-2">創造する</p>
               </span>
             </h1>
 
@@ -320,18 +364,101 @@ export default function Hero() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* スクロールダウン指示 */}
-        <div
-          className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-0 animate-fade-in-up`}
-          style={{ animationDelay: "1s", animationFillMode: "forwards" }}
-        >
-          <span className="text-blue-300 text-sm mb-2">
-            スクロールして詳細を見る
-          </span>
-          <div className="w-6 h-10 border-2 border-blue-300 rounded-full flex justify-center p-1">
-            <div className="w-1 h-2 bg-blue-300 rounded-full animate-bounce"></div>
+      {/* テクノロジーカードセクション */}
+      <div className="relative z-10 py-16 bg-gradient-to-b from-blue-950/30 to-transparent">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div
+            className="text-center mb-12 opacity-0 animate-fade-in-up"
+            style={{ animationDelay: "0.8s", animationFillMode: "forwards" }}
+          >
+            <h2 className="text-3xl font-bold text-white neon-text mb-4">
+              革新的なテクノロジー
+            </h2>
+            <p className="text-blue-200 max-w-2xl mx-auto">
+              私たちは最先端のAIとテクノロジーを組み合わせ、ビジネスと社会に革命をもたらします
+            </p>
           </div>
+
+          <div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 opacity-0 animate-fade-in-up"
+            style={{ animationDelay: "1s", animationFillMode: "forwards" }}
+          >
+            <TechCard
+              icon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-12 w-12"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                  />
+                </svg>
+              }
+              title="AI分析エンジン"
+              description="ビッグデータを高速処理し、ビジネスインサイトを抽出する次世代AIエンジン"
+            />
+            <TechCard
+              icon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-12 w-12"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"
+                  />
+                </svg>
+              }
+              title="生成AI技術"
+              description="テキスト、画像、音声を自動生成し、クリエイティブワークを加速するAI技術"
+            />
+            <TechCard
+              icon={
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-12 w-12"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={1.5}
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                  />
+                </svg>
+              }
+              title="セキュアクラウド"
+              description="最高レベルのセキュリティを備えた、スケーラブルなクラウドインフラストラクチャ"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* スクロールダウン指示 */}
+      <div
+        className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center opacity-0 animate-fade-in-up`}
+        style={{ animationDelay: "1.2s", animationFillMode: "forwards" }}
+      >
+        <span className="text-blue-300 text-sm mb-2">
+          スクロールして詳細を見る
+        </span>
+        <div className="w-6 h-10 border-2 border-blue-300 rounded-full flex justify-center p-1">
+          <div className="w-1 h-2 bg-blue-300 rounded-full animate-bounce"></div>
         </div>
       </div>
     </div>

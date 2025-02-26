@@ -104,15 +104,6 @@ export default function Footer() {
                   AIデータ分析
                 </Link>
               </li>
-              <li>
-                <Link
-                  href="#services"
-                  className="text-base text-blue-100 hover:text-white transition-colors duration-300 flex items-center"
-                >
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  スマートシティ
-                </Link>
-              </li>
             </ul>
           </div>
 
