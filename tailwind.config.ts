@@ -83,11 +83,52 @@ const config: Config = {
   				to: {
   					height: '0'
   				}
-  			}
+  			},
+  		    'spin-slow': {
+  		      from: {
+  		        transform: 'rotate(0deg)'
+  		      },
+  		      to: {
+  		        transform: 'rotate(360deg)'
+  		      }
+  		    },
+  		    'reverse-spin': {
+  		      from: {
+  		        transform: 'rotate(0deg)'
+  		      },
+  		      to: {
+  		        transform: 'rotate(-360deg)'
+  		      }
+  		    },
+  		    'fade-in-up': {
+  		      '0%': {
+  		        opacity: '0',
+  		        transform: 'translateY(20px)'
+  		      },
+  		      '100%': {
+  		        opacity: '1',
+  		        transform: 'translateY(0)'
+  		      }
+  		    },
+  		    'float': {
+  		      '0%': {
+  		        transform: 'translateY(0px)'
+  		      },
+  		      '50%': {
+  		        transform: 'translateY(-10px)'
+  		      },
+  		      '100%': {
+  		        transform: 'translateY(0px)'
+  		      }
+  		    }
   		},
   		animation: {
   			'accordion-down': 'accordion-down 0.2s ease-out',
-  			'accordion-up': 'accordion-up 0.2s ease-out'
+  			'accordion-up': 'accordion-up 0.2s ease-out',
+  		    'spin-slow': 'spin-slow 15s linear infinite',
+  		    'reverse-spin': 'reverse-spin 20s linear infinite',
+  		    'fade-in-up': 'fade-in-up 0.8s ease-out forwards',
+  		    'float': 'float 3s ease-in-out infinite'
   		}
   	}
   },
