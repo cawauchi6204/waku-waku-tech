@@ -1,92 +1,75 @@
-"use client";
+import { Building2, Mail, MapPin, UserRound } from "lucide-react"
 
-import Image from "next/image";
-import { useState, useEffect } from "react";
+const company = [
+  { label: "会社名", value: "株式会社WAKU WAKU TECH" },
+  { label: "設立", value: "2023年7月1日" },
+  { label: "所在地", value: "埼玉県川口市栄町1-8-6" },
+  { label: "代表取締役", value: "河内 達也" },
+  { label: "事業内容", value: "アプリ制作・システム開発・Web制作の企画、開発、運用" },
+]
 
 export default function Company() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById("company");
-    if (element) observer.observe(element);
-
-    return () => {
-      if (element) observer.unobserve(element);
-    };
-  }, []);
-
   return (
-    <div className="bg-gray-900 relative overflow-hidden" id="company">
-      {/* 未来的な背景パターン */}
-      <div className="absolute inset-0 grid-pattern opacity-10"></div>
-      <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/20 to-indigo-900/20"></div>
-
-      <div className="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div
-          className={`mb-16 transition-all duration-1000 ${
-            isVisible
-              ? "opacity-100 transform-none"
-              : "opacity-0 translate-y-10"
-          }`}
-        >
-          <div className="inline-block px-4 py-1 rounded-full glass-effect mb-6 neon-box">
-            <span className="text-sm font-medium text-white"># Company</span>
+    <section id="company" className="border-y border-neutral-200 bg-neutral-50 py-20 sm:py-24">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
+          <div>
+            <p className="font-mono text-sm font-black uppercase tracking-[0.22em] text-orange-600">
+              Studio
+            </p>
+            <h2 className="mt-4 text-4xl font-black tracking-tight text-neutral-950 sm:text-5xl">
+              小さく速く、でもちゃんと強いチーム。
+            </h2>
+            <p className="mt-6 text-base font-medium leading-8 text-neutral-700">
+              自社アプリを作って、出して、磨いてきた経験を、クライアントのプロダクトにも持ち込みます。面白いアイデアを、現実に動くサービスへ。
+            </p>
+            <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3 lg:grid-cols-1">
+              <div className="rounded-md border border-neutral-200 bg-white p-4">
+                <Building2 className="size-6 text-blue-600" aria-hidden="true" />
+                <p className="mt-3 text-sm font-black text-neutral-950">企画から運用まで</p>
+              </div>
+              <div className="rounded-md border border-neutral-200 bg-white p-4">
+                <UserRound className="size-6 text-orange-600" aria-hidden="true" />
+                <p className="mt-3 text-sm font-black text-neutral-950">Founder-led</p>
+              </div>
+              <div className="rounded-md border border-neutral-200 bg-white p-4">
+                <MapPin className="size-6 text-lime-600" aria-hidden="true" />
+                <p className="mt-3 text-sm font-black text-neutral-950">埼玉県川口市</p>
+              </div>
+            </div>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white neon-text mb-6">
-            会社情報
-          </h2>
-        </div>
 
-        <div
-          className={`mt-16 glass-effect-dark p-8 rounded-2xl border border-white/10 neon-box transition-all duration-1000 delay-500 ${
-            isVisible
-              ? "opacity-100 transform-none"
-              : "opacity-0 translate-y-10"
-          }`}
-        >
-          <h3 className="text-2xl font-semibold mb-8 text-white neon-text">
-            会社概要
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="transition-all duration-300 hover:translate-x-1">
-              <p className="text-sm text-blue-300 mb-1">会社名</p>
-              <p className="text-lg font-medium text-white">
-                株式会社WAKU WAKU TECH
+          <div className="overflow-hidden rounded-md border border-neutral-200 bg-white">
+            <div className="border-b border-neutral-200 bg-neutral-950 px-6 py-4 text-white">
+              <p className="font-mono text-sm font-black uppercase tracking-[0.2em] text-lime-300">
+                Company Ledger
               </p>
             </div>
-            <div className="transition-all duration-300 hover:translate-x-1">
-              <p className="text-sm text-blue-300 mb-1">設立</p>
-              <p className="text-lg font-medium text-white">2023年7月1日</p>
-            </div>
-            <div className="transition-all duration-300 hover:translate-x-1">
-              <p className="text-sm text-blue-300 mb-1">所在地</p>
-              <p className="text-lg font-medium text-white">
-                埼玉県川口市栄町1-8-6
-              </p>
-            </div>
-            <div className="transition-all duration-300 hover:translate-x-1">
-              <p className="text-sm text-blue-300 mb-1">代表取締役</p>
-              <p className="text-lg font-medium text-white">河内 達也</p>
-            </div>
-            <div className="col-span-1 md:col-span-2 transition-all duration-300 hover:translate-x-1">
-              <p className="text-sm text-blue-300 mb-1">事業内容</p>
-              <p className="text-lg font-medium text-white">
-                AI技術を活用したサービスの開発・提供
-              </p>
-            </div>
+            <dl>
+              {company.map((item) => (
+                <div key={item.label} className="grid gap-2 border-b border-neutral-200 px-6 py-5 last:border-b-0 sm:grid-cols-[180px_1fr] sm:gap-8">
+                  <dt className="font-mono text-xs font-black uppercase tracking-[0.2em] text-neutral-500">
+                    {item.label}
+                  </dt>
+                  <dd className="text-base font-black text-neutral-950">{item.value}</dd>
+                </div>
+              ))}
+            </dl>
+            <a
+              href="mailto:info@waku-waku-tech.com"
+              className="flex items-center justify-between gap-4 border-t border-neutral-200 bg-orange-600 px-6 py-5 text-white transition hover:bg-orange-500"
+            >
+              <span>
+                <span className="block font-mono text-xs font-black uppercase tracking-[0.2em] text-white/70">
+                  Contact
+                </span>
+                <span className="mt-1 block text-lg font-black">info@waku-waku-tech.com</span>
+              </span>
+              <Mail className="size-6" aria-hidden="true" />
+            </a>
           </div>
         </div>
       </div>
-    </div>
-  );
+    </section>
+  )
 }

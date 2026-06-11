@@ -1,113 +1,87 @@
-"use client";
-
-import { useState, useEffect } from "react";
-import { Zap, Database, Building } from "lucide-react";
+import { ArrowRight } from "lucide-react"
 
 const services = [
   {
-    name: "業務効率化AI導入支援",
-    description: "煩雑な業務プロセスをAIで自動化し、コスト削減と生産性向上を同時に実現します。",
-    gradient: "from-blue-500 to-cyan-500",
-    icon: <Zap className="w-6 h-6 text-blue-300" />,
-    delay: "delay-100",
+    number: "01",
+    title: "アプリ制作",
+    subtitle: "iOS / Android / Cross Platform",
+    description: "思いつきを、毎日起動したくなるプロダクトへ。企画、UI、実装、ストア申請、運用改善まで一気に進めます。",
   },
   {
-    name: "MVP実装",
-    description: "最短距離でサービスを開発します。",
-    gradient: "from-purple-500 to-pink-500",
-    icon: <Database className="w-6 h-6 text-purple-300" />,
-    delay: "delay-300",
+    number: "02",
+    title: "システム開発",
+    subtitle: "Business System / API / Admin",
+    description: "遅い業務を、迷わず動ける仕組みに変える。現場の流れに合わせて、管理画面やAPI、データ基盤を設計します。",
   },
   {
-    name: "自社サービス開発",
-    description: "AIを使用してこれまでになかったサービスを開発します。",
-    gradient: "from-pink-500 to-red-500",
-    icon: <Building className="w-6 h-6 text-pink-300" />,
-    delay: "delay-500",
+    number: "03",
+    title: "Web制作",
+    subtitle: "Corporate / LP / Service Site",
+    description: "会社やサービスの面白さを、最初の数秒で伝える。ブランド整理から実装、計測、改善まで面倒を見ます。",
   },
-];
+  {
+    number: "04",
+    title: "企画・開発・運用",
+    subtitle: "Planning / Build / Operation",
+    description: "会議で止めず、小さく作って大きく学ぶ。リリース後の反応まで見ながら、次のワクワクへ伸ばします。",
+  },
+]
 
 export default function Services() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const element = document.getElementById("services");
-    if (element) observer.observe(element);
-
-    return () => {
-      if (element) observer.unobserve(element);
-    };
-  }, []);
-
   return (
-    <div
-      className="bg-gray-900 grid-pattern relative overflow-hidden"
-      id="services"
-    >
-      {/* サイバーパンクなグラデーションオーバーレイ */}
-      <div className="absolute inset-0 bg-gradient-to-b from-blue-900/20 to-purple-900/20"></div>
-
-      <div className="max-w-7xl mx-auto py-24 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div
-          className={`lg:text-center mb-16 transition-all duration-1000 ${
-            isVisible
-              ? "opacity-100 transform-none"
-              : "opacity-0 translate-y-10"
-          }`}
-        >
-          <div className="inline-block px-4 py-1 rounded-full glass-effect mb-4 neon-box">
-            <span className="text-sm font-medium text-white"># Services</span>
+    <section id="services" className="border-b border-[#17120d]/10 bg-[#f6f2ea] py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-10 lg:grid-cols-[0.82fr_1.18fr]">
+          <div>
+            <p className="font-line text-xs font-bold uppercase tracking-[0.38em] text-[#2d75a5]">
+              Services
+            </p>
+            <h2 className="mt-5 text-5xl font-black leading-[0.98] tracking-[-0.02em] text-[#17120d] sm:text-7xl">
+              つくる。
+              <br />
+              壊す。
+              <br />
+              もっと面白くする。
+            </h2>
           </div>
-          <h2 className="text-3xl md:text-4xl font-bold text-white neon-text mb-6">
-            最先端AIで企業の未来を切り拓く
-          </h2>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto leading-relaxed">
-            我々のAI技術で、あなたのビジネスを次のレベルへ。革新的なソリューションで競争力を高めます。
-          </p>
+          <div className="self-end border-l border-[#17120d]/14 pl-6">
+            <p className="max-w-2xl text-lg font-medium leading-9 text-[#17120d]/72">
+              仕様書を眺めるだけの時間を減らし、触れるものから始めます。速さは雑さではなく、面白い問いに早く到達するための姿勢です。
+            </p>
+          </div>
         </div>
 
-        <div className="mt-16 grid grid-cols-1 gap-10 md:grid-cols-3">
-          {services.map((service, index) => (
-            <div
-              key={service.name}
-              className={`glass-effect-dark border border-white/10 rounded-2xl overflow-hidden hover-scale transition-all duration-700 ${
-                service.delay
-              } ${
-                isVisible
-                  ? "opacity-100 transform-none"
-                  : "opacity-0 translate-y-10"
-              }`}
+        <div className="mt-16 border-t border-[#17120d]/12">
+          {services.map((service) => (
+            <article
+              key={service.number}
+              className="group grid gap-6 border-b border-[#17120d]/12 py-8 transition md:grid-cols-[120px_0.72fr_1fr_48px] md:items-center"
             >
-              <div className={`h-2 bg-gradient-to-r ${service.gradient}`}></div>
-              <div className="p-8">
-                <div className="flex items-center space-x-3 mb-6">
-                  <div
-                    className={`w-10 h-10 rounded-full flex items-center justify-center bg-gradient-to-r ${service.gradient}`}
-                  >
-                    {service.icon}
-                  </div>
-                  <h3 className="text-xl font-semibold text-white">
-                    {service.name}
-                  </h3>
-                </div>
-                <div className="mt-4 text-gray-300">
-                  <p>{service.description}</p>
-                </div>
+              <p className="font-line text-sm font-bold tracking-[0.32em] text-[#e85b24]">
+                {service.number}
+              </p>
+              <div>
+                <h3 className="text-3xl font-black tracking-[-0.01em] text-[#17120d] sm:text-4xl">
+                  {service.title}
+                </h3>
+                <p className="mt-2 font-line text-xs font-bold uppercase tracking-[0.26em] text-[#2d75a5]">
+                  {service.subtitle}
+                </p>
               </div>
-            </div>
+              <p className="max-w-2xl text-base font-medium leading-8 text-[#17120d]/68">
+                {service.description}
+              </p>
+              <a
+                href="#contact"
+                className="inline-flex size-11 items-center justify-center rounded-full border border-[#17120d]/18 text-[#17120d] transition group-hover:-translate-y-1 group-hover:border-[#e85b24] group-hover:bg-[#e85b24] group-hover:text-white"
+                aria-label={`${service.title}を相談する`}
+              >
+                <ArrowRight className="size-4" aria-hidden="true" />
+              </a>
+            </article>
           ))}
         </div>
       </div>
-    </div>
-  );
+    </section>
+  )
 }

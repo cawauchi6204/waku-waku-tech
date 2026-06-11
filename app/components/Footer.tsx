@@ -1,174 +1,99 @@
-"use client";
+import Link from "next/link"
+import { ArrowUpRight } from "lucide-react"
 
-import Link from "next/link";
-import { Facebook, Twitter, Linkedin } from "lucide-react";
-import { useState, useEffect } from "react";
+const footerLinks = [
+  {
+    title: "事業内容",
+    links: [
+      { href: "#services", label: "アプリ制作" },
+      { href: "#services", label: "システム開発" },
+      { href: "#services", label: "Web制作" },
+      { href: "#process", label: "企画・開発・運用" },
+    ],
+  },
+  {
+    title: "開発実績",
+    links: [
+      { href: "#products", label: "すべての実績" },
+      { href: "https://apps.apple.com/jp/developer/tatsuya-kawauchi/id1716320513", label: "App Store" },
+    ],
+  },
+  {
+    title: "会社情報",
+    links: [
+      { href: "#company", label: "会社概要" },
+      { href: "#contact", label: "お問い合わせ" },
+    ],
+  },
+]
 
 export default function Footer() {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
   return (
-    <footer className="bg-gray-900 text-white relative overflow-hidden">
-      {/* 未来的な背景パターン */}
-      <div className="absolute inset-0 grid-pattern opacity-5"></div>
-      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent"></div>
-
-      <div className="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8 relative z-10">
-        <div
-          className={`mb-12 transition-all duration-1000 ${
-            isVisible
-              ? "opacity-100 transform-none"
-              : "opacity-0 translate-y-10"
-          }`}
-        >
-          <Link
-            href="/"
-            className="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 neon-text hover-scale inline-block"
-          >
-            WAKU WAKU TECH
-          </Link>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          <div
-            className={`transition-all duration-700 delay-100 ${
-              isVisible
-                ? "opacity-100 transform-none"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            <h3 className="text-sm font-semibold text-blue-400 tracking-wider uppercase mb-6 neon-text">
-              会社情報
-            </h3>
-            <ul className="space-y-4">
-              <li>
-                <Link
-                  href="#company"
-                  className="text-base text-blue-100 hover:text-white transition-colors duration-300 flex items-center"
-                >
-                  <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  会社概要
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#vision"
-                  className="text-base text-blue-100 hover:text-white transition-colors duration-300 flex items-center"
-                >
-                  <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  ビジョン
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#"
-                  className="text-base text-blue-100 hover:text-white transition-colors duration-300 flex items-center"
-                >
-                  <span className="w-1.5 h-1.5 bg-blue-400 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  プライバシーポリシー
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div
-            className={`transition-all duration-700 delay-300 ${
-              isVisible
-                ? "opacity-100 transform-none"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            <h3 className="text-sm font-semibold text-purple-400 tracking-wider uppercase mb-6 neon-text">
-              サービス
-            </h3>
-            <ul className="space-y-4">
-              <li>
-                <Link
-                  href="#services"
-                  className="text-base text-blue-100 hover:text-white transition-colors duration-300 flex items-center"
-                >
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  地域のデジタル化
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="#services"
-                  className="text-base text-blue-100 hover:text-white transition-colors duration-300 flex items-center"
-                >
-                  <span className="w-1.5 h-1.5 bg-purple-400 rounded-full mr-2 opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                  AIデータ分析
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div
-            className={`transition-all duration-700 delay-500 ${
-              isVisible
-                ? "opacity-100 transform-none"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            <h3 className="text-sm font-semibold text-pink-400 tracking-wider uppercase mb-6 neon-text">
-              お問い合わせ
-            </h3>
-            <p className="text-blue-100 mb-6 leading-relaxed">
-              お気軽にお問い合わせください。
+    <footer className="bg-neutral-950 text-white">
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
+        <div className="grid gap-10 border-b border-white/10 pb-12 lg:grid-cols-[1.05fr_1.2fr_0.75fr]">
+          <div>
+            <Link href="#mission" className="inline-flex items-center gap-3">
+              <span className="flex size-10 items-center justify-center rounded-md bg-white text-lg font-black text-neutral-950">
+                W
+              </span>
+              <span className="text-2xl font-black tracking-tight">WAKU WAKU TECH</span>
+            </Link>
+            <p className="mt-5 max-w-sm text-sm font-medium leading-7 text-white/65">
+              世の中にワクワクを増やす。遅いITを置き去りにして、アイデアを面白いプロダクトへ。
             </p>
+          </div>
+
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+            {footerLinks.map((group) => (
+              <div key={group.title}>
+                <h3 className="font-mono text-xs font-black uppercase tracking-[0.2em] text-lime-300">
+                  {group.title}
+                </h3>
+                <ul className="mt-4 flex flex-col gap-3">
+                  {group.links.map((link) => (
+                    <li key={`${group.title}-${link.label}`}>
+                      <Link
+                        href={link.href}
+                        target={link.href.startsWith("http") ? "_blank" : undefined}
+                        rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                        className="inline-flex items-center gap-2 text-sm font-bold text-white/70 transition hover:text-white"
+                      >
+                        {link.label}
+                        {link.href.startsWith("http") && <ArrowUpRight className="size-3" aria-hidden="true" />}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+
+          <div className="rounded-md border border-white/10 bg-white/5 p-5">
+            <p className="font-mono text-xs font-black uppercase tracking-[0.2em] text-orange-300">
+              Contact
+            </p>
+            <a
+              href="mailto:info@waku-waku-tech.com"
+              className="mt-3 block break-all text-lg font-black text-white transition hover:text-orange-200"
+            >
+              info@waku-waku-tech.com
+            </a>
             <Link
               href="#contact"
-              className="inline-flex items-center px-6 py-2 border border-pink-400/50 text-base font-medium rounded-full text-white bg-transparent hover:bg-pink-500/20 transition-all duration-300 neon-box-pink hover-scale"
+              className="mt-5 inline-flex items-center gap-2 rounded-md bg-orange-600 px-4 py-3 text-sm font-black text-white transition hover:bg-orange-500"
             >
-              お問い合わせ
+              相談する
+              <ArrowUpRight className="size-4" aria-hidden="true" />
             </Link>
           </div>
         </div>
-        <div className="mt-16 border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center">
-          <div
-            className={`flex space-x-8 mb-6 md:mb-0 transition-all duration-700 delay-700 ${
-              isVisible
-                ? "opacity-100 transform-none"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            <Link
-              href="#"
-              className="text-blue-400 hover:text-white transition-colors duration-300 hover-scale"
-            >
-              <span className="sr-only">Twitter</span>
-              <Twitter className="h-6 w-6" aria-hidden="true" />
-            </Link>
-            <Link
-              href="#"
-              className="text-purple-400 hover:text-white transition-colors duration-300 hover-scale"
-            >
-              <span className="sr-only">Facebook</span>
-              <Facebook className="h-6 w-6" aria-hidden="true" />
-            </Link>
-            <Link
-              href="#"
-              className="text-pink-400 hover:text-white transition-colors duration-300 hover-scale"
-            >
-              <span className="sr-only">LinkedIn</span>
-              <Linkedin className="h-6 w-6" aria-hidden="true" />
-            </Link>
-          </div>
-          <p
-            className={`text-base text-blue-100/70 transition-all duration-700 delay-900 ${
-              isVisible
-                ? "opacity-100 transform-none"
-                : "opacity-0 translate-y-10"
-            }`}
-          >
-            &copy; 2025 WAKU WAKU TECH Inc. All rights reserved.
-          </p>
+
+        <div className="flex flex-col gap-3 pt-8 text-xs font-bold text-white/45 sm:flex-row sm:items-center sm:justify-between">
+          <p>&copy; 2026 WAKU WAKU TECH Inc. All rights reserved.</p>
+          <p className="font-mono uppercase tracking-[0.18em]">Build fast. Build fun.</p>
         </div>
       </div>
     </footer>
-  );
+  )
 }
