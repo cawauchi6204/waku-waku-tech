@@ -6,8 +6,9 @@
 **Implementation Evidence**
 - URL: `http://localhost:3000`
 - Desktop screenshot: `/tmp/waku-rocket-final.png`
+- Product wall desktop screenshot: `/tmp/waku-products-final-desktop.png`
 - Desktop motion frames: `/tmp/waku-rocket-desktop-motion-a.png`, `/tmp/waku-rocket-desktop-motion-b.png`
-- Mobile screenshots: `/tmp/waku-rocket-mobile-after.png`, `/tmp/waku-rocket-mobile-menu.png`
+- Mobile screenshots: `/tmp/waku-rocket-mobile-after.png`, `/tmp/waku-rocket-mobile-menu.png`, `/tmp/waku-products-final-mobile.png`
 - Mobile motion frames: `/tmp/waku-rocket-mobile-motion-a.png`, `/tmp/waku-rocket-mobile-motion-b.png`
 - Viewports: default Browser viewport `1280 x 720` and mobile viewport `390 x 844`.
 
@@ -22,7 +23,9 @@
 - Three.js mobile canvas: `390 x 898` backing store/display size at `390 x 844` viewport.
 - Pixel nonblank checks: desktop rocket crop non-cream ratio `0.0761`, luminance variance `611.02`; mobile crop non-cream ratio `0.2514`, luminance variance `5960.7`.
 - Motion checks: desktop two-frame changed ratio `0.0373`, mean absolute diff `1.133`; mobile changed ratio `0.0361`, mean absolute diff `0.825`.
-- Product proof wall: all 11 app names render in DOM: Pomo Dog Run, 3秒献立, 詰めトレ, 原付免許, LIFTZ, ASD DOJO, Sleep Legends, PomoTrain, inustagram, DONE, 144types.
+- Product proof source: Apple Lookup API for developer `Tatsuya Kawauchi` / id `1716320513` returned 1 artist row and 19 software rows on 2026-06-11.
+- Product proof wall: all 19 official App Store app names render in DOM: Pomo Dog Run, 3秒献立 - 晩御飯を一瞬で決める, 詰めトレ - 級位者のための詰将棋, 原付免許 - ワンコイン問題集, LIFTZ:筋トレ記録SNS, ASD DOJO-会話トレーニング, Sleep Legends - 眠れる偉人伝 -, PomoTrain, inustagram - pet sns, DONE 66日間で習慣を定着, 144types - 性格診断×相性分析, すごい家計簿-封筒機能、レシート読み取り機能搭載簡単家計管理, おかんカロリー計算 - おかんが応援する楽しい食事記録アプリ, らくらくパスワード手帳, ご祝儀なぞり書きPro, 3色シンプル家計簿, 断捨離村, Zen Mind Note, chinta!.
+- Product icon proof: 19 local icon files exist in `public/app-icons`; Browser verified 19 product images and 19 loaded images on desktop and mobile.
 - Interaction: desktop `届けたものを見る` scrolls to `#products`; mobile menu opens and exposes できること / 開発実績 / 進め方 / 会社情報 / 相談する.
 
 **Required Fidelity Surfaces**
@@ -33,15 +36,10 @@
 
 **Build And Browser Checks**
 - `npm run build` passed.
-- Build warning: Browserslist `caniuse-lite` is outdated; no compile failure.
 - Next build output reports lint/type validation skipped by project configuration.
-- Browser final load: page title `WAKU WAKU TECH | 世の中にワクワクを増やす`, no framework error overlay, console errors/warnings after final load `[]`.
+- Browser product checks: 19 App Store cards, 19 local icons, no missing official names, no missing sampled summaries, no horizontal overflow at `1280 x 720` or `390 x 844`, console errors/warnings `[]`.
 
 **Findings**
 - No P0/P1/P2 issues remain.
-
-**Follow-Up Polish**
-- P3: Add individual App Store deep links per app if click tracking is needed.
-- P3: Update Browserslist database when routine dependency maintenance is scheduled.
 
 **final result: passed**
