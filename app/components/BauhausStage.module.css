@@ -1,0 +1,340 @@
+.stage {
+  --motion-state: running;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  color: #272b28;
+}
+
+.stage[data-paused="true"] {
+  --motion-state: paused;
+}
+
+.poster {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 16 / 17;
+  background: #ebe7dc;
+  isolation: isolate;
+}
+
+.artwork {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.ringPlacement,
+.bluePlacement,
+.bandPlacement,
+.circlePlacement,
+.ochrePlacement,
+.rulePlacement {
+  transform-origin: 320px 340px;
+  transition: transform 1.6s cubic-bezier(0.22, 0.7, 0.22, 1);
+}
+
+.bandPlacement {
+  transform: rotate(-19deg);
+}
+
+.ringMotion,
+.blueMotion,
+.bandMotion,
+.circleMotion,
+.ochreMotion,
+.ruleMotion {
+  transform-box: view-box;
+  animation-duration: 20s;
+  animation-timing-function: cubic-bezier(0.45, 0, 0.25, 1);
+  animation-iteration-count: infinite;
+  animation-play-state: var(--motion-state);
+}
+
+.ringMotion {
+  transform-origin: 200px 246px;
+  animation-name: arc;
+}
+
+.blueMotion {
+  transform-origin: 362px 461px;
+  animation-name: plane;
+}
+
+.bandMotion {
+  transform-origin: 402px 340px;
+  animation-name: band;
+}
+
+.circleMotion {
+  transform-origin: 472px 352px;
+  animation-name: circles;
+}
+
+.ochreMotion {
+  transform-origin: 543px 103px;
+  animation-name: square;
+}
+
+.ruleMotion {
+  transform-origin: 0 579px;
+  animation-name: rules;
+}
+
+.stage[data-composition="1"] .ringPlacement {
+  transform: translate(123px, 170px) rotate(28deg);
+}
+
+.stage[data-composition="1"] .bluePlacement {
+  transform: translate(-355px, -367px);
+}
+
+.stage[data-composition="1"] .bandPlacement {
+  transform: translate(-154px, 0) rotate(23deg);
+}
+
+.stage[data-composition="1"] .circlePlacement {
+  transform: translate(-184px, -121px) scale(1.14);
+}
+
+.stage[data-composition="1"] .ochrePlacement {
+  transform: translate(-13px, 443px) rotate(12deg);
+}
+
+.stage[data-composition="1"] .rulePlacement {
+  transform: translate(450px, -493px) rotate(90deg);
+}
+
+.stage[data-composition="2"] .ringPlacement {
+  transform: translate(243px, -40px) rotate(-75deg);
+}
+
+.stage[data-composition="2"] .bluePlacement {
+  transform: translate(-402px, 15px);
+}
+
+.stage[data-composition="2"] .bandPlacement {
+  transform: translate(-147px, 8px) rotate(-8deg);
+}
+
+.stage[data-composition="2"] .circlePlacement {
+  transform: translate(-276px, -140px) scale(0.82);
+}
+
+.stage[data-composition="2"] .ochrePlacement {
+  transform: translate(-86px, 481px) rotate(-12deg);
+}
+
+.stage[data-composition="2"] .rulePlacement {
+  transform: translate(425px, -93px);
+}
+
+.caption {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  column-gap: 12px;
+  row-gap: 0;
+  padding-top: 11px;
+  color: #686a63;
+}
+
+.captionTitle {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+  font-family: "Manrope", Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.015em;
+}
+
+.captionTitle > span {
+  color: #686a63;
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-left: auto;
+}
+
+.composeButton,
+.pauseButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.composeButton {
+  gap: 8px;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.025em;
+}
+
+.pauseButton {
+  width: 40px;
+  margin-right: -10px;
+}
+
+.composeButton:hover,
+.pauseButton:hover {
+  color: #b65f47;
+}
+
+.composeButton:focus-visible,
+.pauseButton:focus-visible {
+  outline: 1px solid #272b28;
+  outline-offset: 2px;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@keyframes arc {
+  0%,
+  14%,
+  86%,
+  100% {
+    transform: rotate(0);
+  }
+  38%,
+  54% {
+    transform: translate(21px, 28px) rotate(42deg);
+  }
+  68% {
+    transform: translate(-8px, 8px) rotate(12deg);
+  }
+}
+
+@keyframes plane {
+  0%,
+  14%,
+  86%,
+  100% {
+    transform: translate(0, 0);
+  }
+  38%,
+  54% {
+    transform: translate(-54px, -64px);
+  }
+  68% {
+    transform: translate(-18px, 18px);
+  }
+}
+
+@keyframes band {
+  0%,
+  14%,
+  86%,
+  100% {
+    transform: rotate(0);
+  }
+  38%,
+  54% {
+    transform: translate(-24px, 0) rotate(19deg);
+  }
+  68% {
+    transform: rotate(-5deg);
+  }
+}
+
+@keyframes circles {
+  0%,
+  14%,
+  86%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  38%,
+  54% {
+    transform: translate(-69px, 39px) scale(0.9);
+  }
+  68% {
+    transform: translate(-20px, 13px) scale(0.96);
+  }
+}
+
+@keyframes square {
+  0%,
+  14%,
+  86%,
+  100% {
+    transform: translate(0, 0) rotate(0);
+  }
+  38%,
+  54% {
+    transform: translate(-52px, 27px) rotate(90deg);
+  }
+  68% {
+    transform: translate(0, 12px) rotate(90deg);
+  }
+}
+
+@keyframes rules {
+  0%,
+  14%,
+  86%,
+  100% {
+    transform: scaleX(1);
+  }
+  38%,
+  54% {
+    transform: translateY(-26px) scaleX(1.32);
+  }
+  68% {
+    transform: translateY(7px) scaleX(0.93);
+  }
+}
+
+@media (max-width: 699px) {
+  .caption {
+    padding-top: 7px;
+  }
+
+  .captionTitle {
+    font-size: 9px;
+    gap: 10px;
+  }
+
+  .composeButton {
+    font-size: 9px;
+  }
+
+  .controls {
+    gap: 7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stage *,
+  .stage *::before,
+  .stage *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

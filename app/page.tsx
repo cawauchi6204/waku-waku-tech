@@ -6,21 +6,24 @@ import Vision from "./components/CaseStudies"
 import Company from "./components/Team"
 import ContactForm from "./components/ContactForm"
 import Footer from "./components/Footer"
+import MotionProvider from "./components/MotionProvider"
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col">
+    <MotionProvider>
+      <a className="skip-link" href="#main">
+        本文へスキップ
+      </a>
       <Header />
-      <main>
+      <main id="main">
         <Hero />
-        <Services />
         <Products />
+        <Services />
         <Vision />
         <Company />
         <ContactForm />
       </main>
       <Footer />
-    </div>
+    </MotionProvider>
   )
 }
-
