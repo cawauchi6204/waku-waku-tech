@@ -1,7 +1,8 @@
 import Header from "./components/Header"
 import Loader from "./components/Loader"
 import Motion from "./components/Motion"
-import Universe from "./components/Universe"
+import SpaceJourney from "./components/SpaceJourney"
+import Cupola from "./components/Cupola"
 import Cursor from "./components/Cursor"
 import Hud from "./components/Hud"
 import Hero from "./components/Hero"
@@ -16,7 +17,8 @@ export default function Home() {
   return (
     <>
       <Loader />
-      <Universe />
+      <SpaceJourney />
+      <Cupola />
       <Motion />
       <Cursor />
       <Hud />

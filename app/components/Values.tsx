@@ -31,11 +31,6 @@ export default function Values() {
           className="chapter"
           data-chapter
           data-scene={v.scene}
-          data-x={v.scene === 4 ? "0" : "2.1"}
-          data-y={v.scene === 4 ? "-1.1" : "0"}
-          data-ym={v.scene === 4 ? "-0.6" : "1.1"}
-          data-dim="1"
-          data-dimm="0.5"
           data-hud={`Values — ${v.en}`}
           aria-labelledby={`value-${v.no}`}
         >

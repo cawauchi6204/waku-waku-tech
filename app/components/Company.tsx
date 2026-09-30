@@ -10,7 +10,7 @@ const rows = [
 
 export default function Company() {
   return (
-    <section id="company" className="company" data-scene="5" data-dim="0.35" data-hud="Company">
+    <section id="company" className="company" data-scene="7" data-hud="Company">
       <div className="company-inner">
         <div className="company-head" data-reveal>
           <p className="kicker">Company</p>

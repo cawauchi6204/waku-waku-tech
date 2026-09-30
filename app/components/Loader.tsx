@@ -39,7 +39,7 @@ export default function Loader() {
         ))}
       </div>
       <div className="loader-foot">
-        <span>Assembling a small universe</span>
+        <span>Preparing for launch</span>
         <span className="loader-count">{String(n).padStart(3, "0")}</span>
       </div>
       <span className="loader-bar" style={{ transform: `scaleX(${n / 100})` }} />

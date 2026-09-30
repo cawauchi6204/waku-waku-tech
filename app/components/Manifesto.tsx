@@ -1,6 +1,6 @@
 export default function Manifesto() {
   return (
-    <section id="manifesto" className="manifesto" data-scene="5" data-dim="0.7" data-hud="Mission">
+    <section id="manifesto" className="manifesto" data-scene="5" data-hud="Mission">
       <div className="marquee" aria-hidden="true">
         <p data-marquee>Make the world more exciting — Make the world</p>
         <p data-marquee className="serif">

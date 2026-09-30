@@ -9,7 +9,7 @@ const lines = [
 
 export default function Statement() {
   return (
-    <section id="philosophy" className="statement" data-scene="1" data-dim="0.55" data-dimm="0.4" data-hud="Philosophy">
+    <section id="philosophy" className="statement" data-scene="1" data-hud="Philosophy">
       <div className="sticky-frame">
         <div className="statement-inner">
           <p className="kicker" data-reveal>

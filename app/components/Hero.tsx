@@ -1,6 +1,6 @@
 export default function Hero() {
   return (
-    <section id="top" className="hero" data-scene="0" data-y="0.62" data-ym="0.9" data-dim="1" data-hud="Intro">
+    <section id="top" className="hero" data-scene="0" data-hud="Intro">
       <div className="hero-copy" data-hero-copy>
         <p className="eyebrow" data-hero-fade>
           <span>WAKU WAKU TECH</span>
@@ -33,7 +33,7 @@ export default function Hero() {
         </a>
         <p>
           <span>Press &amp; hold</span>
-          <span>to feel the waku waku</span>
+          <span>to fire the thrusters</span>
         </p>
       </div>
     </section>
