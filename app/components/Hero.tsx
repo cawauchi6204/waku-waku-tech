@@ -23,10 +23,7 @@ export default function Hero() {
         </p>
       </div>
       <div className="hero-meta" data-hero-fade>
-        <p>
-          <span>Est. 2023</span>
-          <span>Kawaguchi, Saitama</span>
-        </p>
+        <span aria-hidden="true" />
         <a href="#philosophy" className="scroll-cue" aria-label="下へスクロール">
           <i aria-hidden="true" />
           <span>Scroll to explore</span>

@@ -1,6 +1,7 @@
 "use client"
 
 import Roll from "./Roll"
+import Sound from "./Sound"
 import { useEffect, useRef, useState } from "react"
 
 const nav = [
@@ -49,9 +50,12 @@ export default function Header() {
             </a>
           ))}
         </nav>
-        <a href="#contact" className="header-cta" data-magnetic="0.3">
-          <Roll>Contact</Roll>
-        </a>
+        <div className="header-actions">
+          <Sound />
+          <a href="#contact" className="header-cta" data-magnetic="0.3">
+            <Roll>Contact</Roll>
+          </a>
+        </div>
         <button
           ref={toggle}
           type="button"

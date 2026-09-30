@@ -91,8 +91,8 @@ export const earthFragment = /* glsl */ `
     ground*=0.8+0.4*smoothstep(0.1,0.5,h);
 
     vec3 col=mix(ocean,ground,land);
-    float ice=smoothstep(0.8,0.88,lat+detail*0.06);
-    col=mix(col,vec3(0.85,0.9,0.95),ice);
+    float ice=smoothstep(0.86,0.93,lat+detail*0.06);
+    col=mix(col,vec3(0.62,0.68,0.74),ice);
 
     vec3 L=normalize(uSunDir);
     vec3 N=normalize(vWorldN);
@@ -138,6 +138,7 @@ export const cloudFragment = /* glsl */ `
     float c=fbm(q+w*0.6+vec3(0.0,n.y*2.0,0.0));
     float bands=0.5+0.5*sin(n.y*9.0+w*3.0);
     float a=smoothstep(0.12,0.62,c+bands*0.1)*0.85;
+    a*=1.0-smoothstep(0.62,0.92,abs(n.y))*0.75;
     float ndl=dot(normalize(vWorldN),normalize(uSunDir));
     float lit=smoothstep(-0.12,0.35,ndl);
     vec3 col=mix(vec3(0.02,0.03,0.05),vec3(1.0,0.98,0.95),lit);

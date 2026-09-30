@@ -18,6 +18,7 @@ import {
   streakFragment,
   streakVertex,
 } from "@/lib/space-shaders"
+import { buildCockpit, FRAME_HALF_WIDTH, WINDOW_HALF_WIDTH } from "@/lib/cockpit"
 
 const EARTH_R = 10
 const ATMO_R = 10.36
@@ -55,13 +56,13 @@ const moonLook = MOON_POS.clone().add(new THREE.Vector3(0, 3.4, 0))
 
 // One shot per [data-scene] section, in document order.
 const SHOTS: Shot[] = [
-  { pos: [0, 12.4, 1.5], look: [0, 5.2, -20], fov: 52, cupola: 1, exposure: 1, shift: 0 },
+  { pos: [0, 12.4, 1.5], look: [0, 4.3, -20], fov: 52, cupola: 1, exposure: 1, shift: 0 },
   { pos: [2, 26, 22], look: [-1, 6, 0], fov: 46, cupola: 0, exposure: 1, shift: 0.18 },
   { pos: sunrisePos.toArray() as V3, look: [0, 0, 0], fov: 44, cupola: 0, exposure: 1.1, shift: 0.2 },
   { pos: [30, 10, 34], look: [0, 0, 0], fov: 40, cupola: 0, exposure: 1, shift: 0.22 },
   { pos: moonShot.toArray() as V3, look: moonLook.toArray() as V3, fov: 42, cupola: 0, exposure: 1, shift: 0 },
   { pos: [60, 70, 460], look: [0, 0, 0], fov: 38, cupola: 0, exposure: 0.95, shift: 0 },
-  { pos: [0, 12.4, 1.5], look: [0, 5.2, -20], fov: 52, cupola: 1, exposure: 1, shift: 0 },
+  { pos: [0, 12.4, 1.5], look: [0, 4.3, -20], fov: 52, cupola: 1, exposure: 1, shift: 0 },
   {
     pos: nightPos.toArray() as V3,
     look: nightLook.toArray() as V3,
@@ -285,6 +286,10 @@ export default function SpaceJourney() {
     streaks.frustumCulled = false
     camera.add(streaks)
 
+    // ── Cockpit, riding with the camera
+    const cockpit = buildCockpit(renderer)
+    camera.add(cockpit.root)
+
     // ── Post-processing
     const composer = new EffectComposer(renderer)
     composer.addPass(new RenderPass(scene, camera))
@@ -446,10 +451,19 @@ export default function SpaceJourney() {
       moon.rotation.y = timeUniform.value * 0.01
 
       renderer.toneMappingExposure = mix(A.exposure, B.exposure) * (1 + boost * 0.25)
-      root.style.setProperty("--cupola", cupola.toFixed(4))
-      root.style.setProperty("--px", `${(-mouseSmooth.x * 10).toFixed(2)}px`)
-      root.style.setProperty("--py", `${(-mouseSmooth.y * 8).toFixed(2)}px`)
-      root.style.setProperty("--thrust", boost.toFixed(3))
+      // Park the cupola so its frame fits the screen, then fly out through the window.
+      // Landscape fits the whole frame; portrait fits the window glass and drops it to the horizon.
+      const halfH = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2))
+      const dist = 1.05
+      const visibleHalfW = halfH * camera.aspect * dist
+      const portrait = camera.aspect < 1
+      const scale = Math.min(1, visibleHalfW / ((portrait ? WINDOW_HALF_WIDTH * 1.04 : FRAME_HALF_WIDTH * 1.06)))
+      const out = 1 - cupola
+      cockpit.root.visible = cupola > 0.002
+      cockpit.root.scale.setScalar(scale)
+      cockpit.root.position.set(0, portrait ? -halfH * dist * 0.16 : 0, -dist + out * out * (dist + 0.4))
+      cockpit.root.rotation.set(mouseSmooth.y * 0.02, mouseSmooth.x * 0.03, 0)
+      cockpit.update(timeUniform.value, boost)
 
       composer.render()
       if (!host.dataset.ready) host.dataset.ready = "true"
@@ -471,6 +485,7 @@ export default function SpaceJourney() {
       window.removeEventListener("pointercancel", onUp)
       document.removeEventListener("visibilitychange", onVisibility)
       ro.disconnect()
+      cockpit.dispose()
       scene.traverse((o) => {
         const mesh = o as THREE.Mesh
         mesh.geometry?.dispose()
