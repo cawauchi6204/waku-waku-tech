@@ -1,21 +1,74 @@
 import type { Metadata, Viewport } from "next"
 import "lenis/dist/lenis.css"
 import "./globals.css"
+import { SITE } from "@/lib/site"
+
+const title = `${SITE.name}｜${SITE.tagline}`
 
 export const metadata: Metadata = {
-  title: "WAKU WAKU TECH — 世の中に、ワクワクを増やす。",
-  description:
-    "株式会社WAKU WAKU TECHは、テクノロジーで日常に驚きと楽しさを届けるプロダクトカンパニーです。",
+  metadataBase: new URL(SITE.url),
+  title: { default: title, template: `%s｜${SITE.name}` },
+  description: SITE.description,
+  applicationName: SITE.name,
+  alternates: { canonical: "/" },
   openGraph: {
-    title: "WAKU WAKU TECH — 世の中に、ワクワクを増やす。",
-    description: "テクノロジーで、日常にもっと驚きと楽しさを。",
+    title,
+    description: SITE.description,
+    url: "/",
+    siteName: SITE.name,
     type: "website",
     locale: "ja_JP",
   },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description: SITE.description,
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
+  },
+  formatDetection: { telephone: false, address: false, email: false },
 }
 
 export const viewport: Viewport = {
   themeColor: "#000000",
+  colorScheme: "dark",
+}
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${SITE.url}/#website`,
+      url: SITE.url,
+      name: SITE.name,
+      alternateName: ["ワクワクテック", SITE.legalName],
+      inLanguage: "ja",
+      publisher: { "@id": `${SITE.url}/#organization` },
+    },
+    {
+      "@type": "Organization",
+      "@id": `${SITE.url}/#organization`,
+      name: SITE.name,
+      legalName: SITE.legalName,
+      url: SITE.url,
+      logo: `${SITE.url}/apple-icon`,
+      slogan: SITE.tagline,
+      email: SITE.email,
+      foundingDate: SITE.foundingDate,
+      address: {
+        "@type": "PostalAddress",
+        postalCode: SITE.address.postalCode,
+        addressRegion: SITE.address.region,
+        addressLocality: SITE.address.locality,
+        streetAddress: SITE.address.street,
+        addressCountry: "JP",
+      },
+    },
+  ],
 }
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -25,6 +78,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <script
           dangerouslySetInnerHTML={{ __html: "if(!location.hash){history.scrollRestoration='manual';scrollTo(0,0)}" }}
         />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link

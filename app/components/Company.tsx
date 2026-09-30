@@ -19,7 +19,7 @@ export default function Company() {
             小さなチームで、<em>大きなワクワク</em>を。
           </p>
         </div>
-        <dl className="company-list" data-reveal>
+        <dl className="company-list" data-reveal data-nosnippet>
           {rows.map((row) => (
             <div key={row.label}>
               <dt>{row.label}</dt>
