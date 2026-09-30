@@ -36,6 +36,7 @@ export default function Values() {
           data-ym={v.scene === 4 ? "-0.6" : "1.1"}
           data-dim="1"
           data-dimm="0.5"
+          data-hud={`Values — ${v.en}`}
           aria-labelledby={`value-${v.no}`}
         >
           <div className="sticky-frame">
@@ -43,7 +44,7 @@ export default function Values() {
               <p className="chapter-meta" data-chapter-item>
                 <span>{v.no}</span>
                 <span className="chapter-rule" aria-hidden="true" />
-                <span>{v.en}</span>
+                <em>{v.en}</em>
               </p>
               <h2 id={`value-${v.no}`} className="chapter-title" data-chapter-item>
                 {v.title[0]}

@@ -29,6 +29,7 @@ const vertexShader = /* glsl */ `
   uniform vec2 uMouse;
   uniform float uAspect;
   uniform float uOpacity;
+  uniform float uCharge;
 
   varying vec3 vColor;
   varying float vAlpha;
@@ -115,6 +116,12 @@ const vertexShader = /* glsl */ `
     float amp=mix(noiseAt(uFrom),noiseAt(uTo),m);
     pos+=n*(amp+travel*0.9);
 
+    // press-and-hold: the whole form swells and jitters with excitement
+    float charge=max(uCharge,0.0);
+    pos*=1.0+uCharge*0.28;
+    pos+=n*charge*(0.55+aSeed.x*0.9);
+    pos+=vec3(sin(uTime*38.0+aSeed.w*9.0),cos(uTime*41.0+aSeed.w*7.0),0.0)*charge*0.035;
+
     // intro: burst out of a single point
     float intro=clamp(uIntro*1.4-aSeed.x*0.4,0.0,1.0);
     intro=1.0-pow(1.0-intro,4.0);
@@ -140,8 +147,9 @@ const vertexShader = /* glsl */ `
     if(aSeed.z>0.84) col=ember;
     if(aSeed.z>0.95) col=rose;
     col=mix(col,ember,f*0.8);
+    col=mix(col,mix(ember,rose,aSeed.x),charge*0.7);
     vColor=col;
-    vAlpha=twinkle*uOpacity*intro*smoothstep(-26.0,-6.0,mv.z);
+    vAlpha=twinkle*uOpacity*intro*smoothstep(-26.0,-6.0,mv.z)*(1.0+charge*0.6);
   }
 `
 
@@ -205,6 +213,7 @@ export default function Universe() {
       uMouse: { value: new THREE.Vector2(9, 9) },
       uAspect: { value: 1 },
       uOpacity: { value: 1 },
+      uCharge: { value: 0 },
     }
     const material = new THREE.ShaderMaterial({
       vertexShader,
@@ -238,7 +247,12 @@ export default function Universe() {
       points.visible = true
       host.dataset.ready = "true"
     }
-    ;(document.fonts?.ready ?? Promise.resolve()).then(build)
+    ;(document.fonts
+      ? document.fonts.load('800 100px "Inter Tight"').then(() => document.fonts.ready)
+      : Promise.resolve()
+    )
+      .catch(() => undefined)
+      .then(build)
 
     // Scroll-driven scene stops, read from [data-scene] sections.
     let stops: SceneStop[] = []
@@ -279,6 +293,22 @@ export default function Universe() {
       mouse.set((e.clientX / window.innerWidth) * 2 - 1, -(e.clientY / window.innerHeight) * 2 + 1)
     }
     const onLeave = () => mouse.set(9, 9)
+
+    // Hold anywhere that isn't a control to charge the particles; release springs back.
+    let chargeTarget = 0
+    let chargeVel = 0
+    const onDown = (e: PointerEvent) => {
+      if ((e.target as HTMLElement).closest("a, button, input, textarea, nav")) return
+      chargeTarget = 1
+      document.documentElement.dataset.charging = "true"
+    }
+    const onUp = () => {
+      chargeTarget = 0
+      delete document.documentElement.dataset.charging
+    }
+    window.addEventListener("pointerdown", onDown)
+    window.addEventListener("pointerup", onUp)
+    window.addEventListener("pointercancel", onUp)
     window.addEventListener("pointermove", onMove)
     document.addEventListener("pointerleave", onLeave)
 
@@ -342,6 +372,14 @@ export default function Universe() {
         }
       }
 
+      if (!reduced) {
+        // Critically under-damped spring so the release overshoots a little.
+        const k = chargeTarget > uniforms.uCharge.value ? 14 : 90
+        chargeVel += (chargeTarget - uniforms.uCharge.value) * k * dt
+        chargeVel *= Math.pow(chargeTarget > 0 ? 0.02 : 0.004, dt)
+        uniforms.uCharge.value += chargeVel * dt
+      }
+
       pointerSmoothed.lerp(mouse, 0.12)
       uniforms.uMouse.value.copy(pointerSmoothed)
       const mx = Math.abs(mouse.x) > 2 ? 0 : mouse.x
@@ -364,6 +402,9 @@ export default function Universe() {
       cancelAnimationFrame(raf)
       window.removeEventListener("resize", resize)
       window.removeEventListener("pointermove", onMove)
+      window.removeEventListener("pointerdown", onDown)
+      window.removeEventListener("pointerup", onUp)
+      window.removeEventListener("pointercancel", onUp)
       document.removeEventListener("pointerleave", onLeave)
       document.removeEventListener("visibilitychange", onVisibility)
       ro.disconnect()

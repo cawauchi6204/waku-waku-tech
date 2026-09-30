@@ -149,7 +149,7 @@ function word(count: number, rand: () => number) {
   ctx.fillStyle = "#fff"
   ctx.textAlign = "center"
   ctx.textBaseline = "middle"
-  ctx.font = '800 300px "Inter", "Helvetica Neue", Arial, sans-serif'
+  ctx.font = '800 300px "Inter Tight", "Helvetica Neue", Arial, sans-serif'
   ctx.fillText("WAKU", w / 2, h * 0.3)
   ctx.fillText("WAKU", w / 2, h * 0.73)
   const data = ctx.getImageData(0, 0, w, h).data

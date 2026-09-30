@@ -2,6 +2,8 @@ import Header from "./components/Header"
 import Loader from "./components/Loader"
 import Motion from "./components/Motion"
 import Universe from "./components/Universe"
+import Cursor from "./components/Cursor"
+import Hud from "./components/Hud"
 import Hero from "./components/Hero"
 import Statement from "./components/Statement"
 import Values from "./components/Values"
@@ -16,6 +18,9 @@ export default function Home() {
       <Loader />
       <Universe />
       <Motion />
+      <Cursor />
+      <Hud />
+      <div className="grain" aria-hidden="true" />
       <a className="skip-link" href="#main">
         本文へスキップ
       </a>

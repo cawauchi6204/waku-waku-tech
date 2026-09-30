@@ -4,18 +4,22 @@ import { useEffect } from "react"
 import Lenis from "lenis"
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+import { SplitText } from "gsap/SplitText"
 
 export default function Motion() {
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
+    gsap.registerPlugin(ScrollTrigger, SplitText)
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches
     document.documentElement.dataset.motion = reduced ? "reduced" : "full"
+
 
     let lenis: Lenis | null = null
     const onTick = (time: number) => lenis?.raf(time * 1000)
     if (!reduced) {
       lenis = new Lenis({ duration: 1.15, smoothWheel: true })
       lenis.on("scroll", ScrollTrigger.update)
+      // Always open on the intro so the loader → hero sequence plays in full.
+      if (!location.hash) lenis.scrollTo(0, { immediate: true, force: true })
       gsap.ticker.add(onTick)
       gsap.ticker.lagSmoothing(0)
     }
@@ -60,7 +64,7 @@ export default function Motion() {
         duration: 1.6,
         ease: "expo.out",
         stagger: 0.12,
-        delay: 1.5,
+        delay: 1.9,
       })
       gsap.from("[data-hero-fade]", {
         opacity: 0,
@@ -68,7 +72,7 @@ export default function Motion() {
         duration: 1.4,
         ease: "power3.out",
         stagger: 0.1,
-        delay: 2.1,
+        delay: 2.4,
       })
 
       // Statement: words light up with scroll
@@ -107,6 +111,27 @@ export default function Motion() {
             scrollTrigger: { trigger: "#manifesto", start: "top bottom", end: "bottom top", scrub: true },
           }
         )
+      })
+
+      // Headlines: characters rise out of their line masks
+      gsap.utils.toArray<HTMLElement>("[data-split]").forEach((el) => {
+        const split = SplitText.create(el, { type: "lines,chars", mask: "lines" })
+        gsap.from(split.chars, {
+          yPercent: 110,
+          duration: 1.2,
+          ease: "expo.out",
+          stagger: 0.025,
+          scrollTrigger: { trigger: el, start: "top 85%", once: true },
+        })
+      })
+
+      // Footer wordmark letters spring up
+      gsap.from("[data-footer-mark] > *", {
+        yPercent: 100,
+        duration: 1.4,
+        ease: "expo.out",
+        stagger: 0.04,
+        scrollTrigger: { trigger: "[data-footer-mark]", start: "top 95%", once: true },
       })
 
       // Generic reveals
